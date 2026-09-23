@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Camera, Check, ImagePlus, RotateCcw, X } from "lucide-react";
 import { PixelScreen } from "@/components/PixelArt";
-import { DemoBanner, EmojiTile, ExpiryBadge, OfflineNotice, PageHeader } from "@/components/ui";
+import { DemoBanner, EmojiTile, ExpiryBadge, OfflineNotice, PageHeader, useDemoMode } from "@/components/ui";
 import { detectFoods } from "@/lib/api";
 import { prepareImage, type PreparedImage } from "@/lib/image";
 import { foodKey, useFrigo } from "@/lib/store";
@@ -30,6 +30,7 @@ export default function ScanPage() {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [demo, setDemo] = useState(false);
   const [source, setSource] = useState<"nevera" | "ticket">("nevera");
+  const demoMode = useDemoMode();
 
   const cameraRef = useRef<HTMLInputElement>(null);
   const galleryRef = useRef<HTMLInputElement>(null);
@@ -214,6 +215,9 @@ export default function ScanPage() {
           </button>
         ))}
       </div>
+
+      {/* Se avisa ANTES de hacer fotos: en demo no se miran las fotos de verdad */}
+      {demoMode && <DemoBanner />}
 
       <OfflineNotice>
         Sin conexión no se pueden analizar fotos. Puedes añadir alimentos a mano mientras tanto.

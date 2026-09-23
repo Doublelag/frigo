@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { z } from "zod";
-import { ClaudeOutputError } from "./claude";
+import { esErrorDeModelo } from "./ai";
 import { clientIp, limitRequest } from "./rate-limit";
 
 /** Utilidades comunes de las rutas /api */
@@ -36,7 +36,8 @@ export async function checkRate(req: Request, bucket: string, perHour: number): 
 }
 
 export function claudeErrorResponse(error: unknown): Response {
-  if (error instanceof ClaudeOutputError) return jsonError(error.message, 502);
+  // Errores de contenido (respuesta ilegible, límite gratuito agotado...)
+  if (esErrorDeModelo(error)) return jsonError((error as Error).message, 502);
   if (error instanceof Anthropic.RateLimitError) {
     return jsonError("Hay mucha gente usando Frigo ahora mismo. Prueba en un minuto.", 503);
   }

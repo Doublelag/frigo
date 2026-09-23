@@ -251,8 +251,25 @@ export function OfflineNotice({ children }: { children: React.ReactNode }) {
 export function DemoBanner() {
   return (
     <div className="mb-4 rounded-2xl border border-dashed border-warn bg-warn-soft px-4 py-3 text-sm text-warn">
-      <strong>Modo demo:</strong> son datos de ejemplo. Añade la API key de Claude en <code>.env.local</code> para que
-      analice tu nevera de verdad.
+      <strong>Modo demo:</strong> son datos de ejemplo, no lo que hay en tus fotos. Falta conectar la API key de Claude.
     </div>
   );
+}
+
+/** Pregunta al servidor si está conectado a Claude; null mientras lo comprueba */
+export function useDemoMode(): boolean | null {
+  const [demo, setDemo] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let vivo = true;
+    fetch("/api/estado")
+      .then((r) => r.json())
+      .then((d) => vivo && setDemo(Boolean(d.demo)))
+      .catch(() => vivo && setDemo(null));
+    return () => {
+      vivo = false;
+    };
+  }, []);
+
+  return demo;
 }

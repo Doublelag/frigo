@@ -1,5 +1,5 @@
 import { checkRate, claudeErrorResponse, parseBody, sleep } from "@/lib/api-route";
-import { detectFoods, isDemo } from "@/lib/claude";
+import { detectar, isDemo } from "@/lib/ai";
 import { DEMO_DETECTED } from "@/lib/demo";
 import { DetectRequestSchema } from "@/lib/schemas";
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const items = await detectFoods(body.data);
+    const items = await detectar(body.data);
     return Response.json({ items, demo: false });
   } catch (error) {
     return claudeErrorResponse(error);

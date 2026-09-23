@@ -1,5 +1,5 @@
 import { checkRate, claudeErrorResponse, parseBody, sleep } from "@/lib/api-route";
-import { isDemo, suggestRecipes } from "@/lib/claude";
+import { isDemo, proponerRecetas } from "@/lib/ai";
 import { DEMO_RECIPES } from "@/lib/demo";
 import { RecipesRequestSchema } from "@/lib/schemas";
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const recipes = await suggestRecipes(body.data);
+    const recipes = await proponerRecetas(body.data);
     return Response.json({ recipes, demo: false });
   } catch (error) {
     return claudeErrorResponse(error);

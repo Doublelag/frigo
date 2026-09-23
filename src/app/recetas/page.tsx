@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Camera, Minus, Plus, RefreshCw, Search, SlidersHorizontal, Sparkles } from "lucide-react";
 import { PixelScreen } from "@/components/PixelArt";
 import { RecipeCard } from "@/components/RecipeCard";
-import { Chips, DemoBanner, OfflineNotice, PageHeader } from "@/components/ui";
+import { Chips, DemoBanner, OfflineNotice, PageHeader, useDemoMode } from "@/components/ui";
 import { fetchRecipes } from "@/lib/api";
 import { normalizeName, useFrigo } from "@/lib/store";
 import type { MealType } from "@/lib/types";
@@ -72,6 +72,7 @@ function Recipes() {
   const [step, setStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [demo, setDemo] = useState(false);
+  const demoMode = useDemoMode();
   const [editingFilters, setEditingFilters] = useState(false);
   const [generated, setGenerated] = useState(false);
   const autoStarted = useRef(false);
@@ -137,6 +138,8 @@ function Recipes() {
   return (
     <>
       <PageHeader title="Recetas" subtitle={`Con los ${items.length} alimentos de tu nevera`} />
+
+      {demoMode && <DemoBanner />}
 
       <OfflineNotice>Sin conexión no se pueden pedir recetas nuevas, pero las guardadas siguen aquí.</OfflineNotice>
 

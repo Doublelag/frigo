@@ -10,8 +10,7 @@ import { DetectionSchema, RecipesSchema, type DetectRequest, type RecipesRequest
 
 const MODEL = process.env.CLAUDE_MODEL || "claude-opus-5";
 
-/** Sin API key la app funciona con datos de ejemplo */
-export const isDemo = () => process.env.FRIGO_DEMO === "1" || !process.env.ANTHROPIC_API_KEY;
+export const hasClaudeKey = () => Boolean(process.env.ANTHROPIC_API_KEY);
 
 let client: Anthropic | null = null;
 const getClient = () => (client ??= new Anthropic());
