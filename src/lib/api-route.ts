@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { z } from "zod";
 import { esErrorDeModelo } from "./ai";
+import { APP_NAME } from "./brand";
 import { clientIp, limitRequest } from "./rate-limit";
 
 /** Utilidades comunes de las rutas /api */
@@ -39,11 +40,11 @@ export function claudeErrorResponse(error: unknown): Response {
   // Errores de contenido (respuesta ilegible, límite gratuito agotado...)
   if (esErrorDeModelo(error)) return jsonError((error as Error).message, 502);
   if (error instanceof Anthropic.RateLimitError) {
-    return jsonError("Hay mucha gente usando Frigo ahora mismo. Prueba en un minuto.", 503);
+    return jsonError(`Hay mucha gente usando ${APP_NAME} ahora mismo. Prueba en un minuto.`, 503);
   }
   if (error instanceof Anthropic.AuthenticationError || error instanceof Anthropic.PermissionDeniedError) {
     console.error("[claude] API key no válida o sin permisos");
-    return jsonError("El servicio no está bien configurado. Avisa al equipo de Frigo.", 500);
+    return jsonError(`El servicio no está bien configurado. Avisa al equipo de ${APP_NAME}.`, 500);
   }
   if (error instanceof Anthropic.BadRequestError) {
     console.error("[claude] petición rechazada:", error.message);

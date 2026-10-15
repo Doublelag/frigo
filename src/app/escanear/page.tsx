@@ -6,6 +6,7 @@ import { Camera, Check, ImagePlus, RotateCcw, X } from "lucide-react";
 import { PixelScreen } from "@/components/PixelArt";
 import { DemoBanner, EmojiTile, ExpiryBadge, OfflineNotice, PageHeader, useDemoMode } from "@/components/ui";
 import { detectFoods } from "@/lib/api";
+import { APP_NAME } from "@/lib/brand";
 import { prepareImage, type PreparedImage } from "@/lib/image";
 import { foodKey, useFrigo } from "@/lib/store";
 import { toast } from "@/lib/toast";
@@ -309,7 +310,7 @@ export default function ScanPage() {
           </button>
         )}
         <p className="px-2 pt-1 text-center text-xs text-muted">
-          También sirve con la bolsa de la compra o la despensa. Frigo no guarda tus fotos.
+          También sirve con la bolsa de la compra o la despensa. {APP_NAME} no guarda tus fotos.
         </p>
       </div>
     </>

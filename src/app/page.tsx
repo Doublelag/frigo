@@ -8,6 +8,7 @@ import { Onboarding } from "@/components/Onboarding";
 import { PixelScreen } from "@/components/PixelArt";
 import { QuickAdd } from "@/components/QuickAdd";
 import { EmojiTile, ExpiryBadge, PageHeader, Sheet } from "@/components/ui";
+import { APP_NAME } from "@/lib/brand";
 import { daysLeft, urgency } from "@/lib/dates";
 import { normalizeName, useFrigo } from "@/lib/store";
 import { CATEGORIES, CATEGORY_EMOJI, CATEGORY_LABEL, type FridgeItem } from "@/lib/types";
@@ -184,7 +185,7 @@ function EmptyFridge({ onAdd }: { onAdd: () => void }) {
       <PixelScreen sprite="fridge" className="mb-5" />
       <h2 className="font-display text-lg font-bold">Aún no sabemos qué tienes</h2>
       <p className="mt-2 max-w-xs text-muted">
-        Haz una foto a la nevera abierta y Frigo apuntará los alimentos y cuándo caducan.
+        Haz una foto a la nevera abierta y {APP_NAME} apuntará los alimentos y cuándo caducan.
       </p>
       <div className="mt-7 flex w-full flex-col gap-3">
         <Link href="/escanear" className="btn btn-primary">

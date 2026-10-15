@@ -5,7 +5,11 @@ export const DEFAULT_THEME: Theme = "oscuro";
 
 export const THEME_COLOR = { dark: "#111412", light: "#f5f2ea" } as const;
 
-/** Clave de zustand persist; la usa también el script que evita el parpadeo */
+/**
+ * Clave de zustand persist; la usa también el script que evita el parpadeo.
+ * Se queda como "frigo-v1" aunque la app se llame Salvacenas: cambiarla haría
+ * que quien ya tiene datos guardados los perdiera al actualizar.
+ */
 export const STORAGE_KEY = "frigo-v1";
 
 /**

@@ -1,6 +1,6 @@
 import type { InventoryForPrompt, Preferences, RecipeFilters } from "./types";
 
-export const DETECT_SYSTEM = `Eres el motor de visión de Frigo, una app española que mira fotos de neveras, despensas o bolsas de la compra y apunta qué alimentos hay para luego proponer recetas.
+export const DETECT_SYSTEM = `Eres el motor de visión de Salvacenas, una app española que mira fotos de neveras, despensas o bolsas de la compra y apunta qué alimentos hay para luego proponer recetas.
 
 Cómo mirar la foto (las neveras reales están llenas y con mala luz):
 - Recorre la foto por partes: balda por balda, los cajones de abajo y la puerta. En la puerta suele haber bebidas, salsas, huevos y lácteos.
@@ -43,7 +43,7 @@ export function detectUserText(today: string, photoCount: number, source: "never
   return `Hoy es ${today}. Haz la lista de alimentos que aparecen en ${fotos}.`;
 }
 
-export const RECIPES_SYSTEM = `Eres el cocinero de Frigo. Propones recetas caseras para cocinar con lo que el usuario ya tiene en la nevera, en español de España.
+export const RECIPES_SYSTEM = `Eres el cocinero de Salvacenas. Propones recetas caseras para cocinar con lo que el usuario ya tiene en la nevera, en español de España.
 
 Reglas que no se rompen:
 - Dieta y alergias/intolerancias del usuario: se respetan siempre. Ningún ingrediente con alérgenos declarados, ni siquiera como opcional.

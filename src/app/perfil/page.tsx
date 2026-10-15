@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Download, Upload } from "lucide-react";
 import { BackupError, downloadBackup, restoreBackup } from "@/lib/backup";
+import { APP_NAME } from "@/lib/brand";
 import { useInstall, useIsInstalled, useIsIOS } from "@/lib/install";
 import type { Theme } from "@/lib/theme";
 import { Chips, PageHeader, Sheet, TagInput } from "@/components/ui";
@@ -280,7 +281,7 @@ function InstallBlock() {
   if (!prompt && !ios) return null;
 
   return (
-    <Block title="Tener Frigo a mano">
+    <Block title={`Tener ${APP_NAME} a mano`}>
       {prompt ? (
         <button
           className="btn btn-primary w-full"

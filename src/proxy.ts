@@ -26,7 +26,5 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Se deja fuera lo que tiene que cargar sí o sí (iconos, manifiesto,
   // service worker y ficheros estáticos)
-  matcher: [
-    "/((?!_next/static|_next/image|icons/|icon|apple-icon|manifest.webmanifest|sw.js|favicon.ico).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|icons/|icon|apple-icon|manifest.webmanifest|sw.js|favicon.ico).*)"],
 };

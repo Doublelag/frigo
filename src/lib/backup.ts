@@ -40,7 +40,8 @@ const RecipeSchema = z.object({
 });
 
 export const BackupSchema = z.object({
-  app: z.literal("frigo"),
+  // "frigo" era el nombre anterior: las copias viejas se siguen admitiendo
+  app: z.enum(["salvacenas", "frigo"]),
   version: z.number(),
   exportedAt: z.string(),
   data: z.object({
@@ -65,7 +66,7 @@ export type Backup = z.infer<typeof BackupSchema>;
 export function buildBackup(): Backup {
   const { items, shopping, saved, prefs, log } = useFrigo.getState();
   return {
-    app: "frigo",
+    app: "salvacenas",
     version: 1,
     exportedAt: new Date().toISOString(),
     data: { items, shopping, saved, prefs, log },
@@ -90,7 +91,7 @@ export async function restoreBackup(file: File): Promise<number> {
   try {
     parsed = JSON.parse(await file.text());
   } catch {
-    throw new BackupError("Ese archivo no es una copia de Frigo.");
+    throw new BackupError(`Ese archivo no es una copia de ${APP_NAME}.`);
   }
 
   const backup = BackupSchema.safeParse(parsed);

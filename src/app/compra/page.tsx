@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Check, Plus, Refrigerator, Share2, Trash2, X } from "lucide-react";
 import { PixelScreen } from "@/components/PixelArt";
 import { groupByAisle } from "@/lib/aisles";
+import { APP_NAME } from "@/lib/brand";
 import { PageHeader } from "@/components/ui";
 import { useFrigo } from "@/lib/store";
 import { toast } from "@/lib/toast";
@@ -149,7 +150,7 @@ export default function ShoppingPage() {
             <Link href="/escanear" className="font-semibold text-brand underline">
               escaneas la compra
             </Link>{" "}
-            al llegar a casa, Frigo calcula también cuándo caduca cada cosa.
+            al llegar a casa, {APP_NAME} calcula también cuándo caduca cada cosa.
           </p>
         </section>
       )}

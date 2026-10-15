@@ -21,8 +21,7 @@ export const isDemo = () => provider() === "demo";
 /** Errores "de contenido": se le enseñan al usuario tal cual */
 export const esErrorDeModelo = (e: unknown) => e instanceof ClaudeOutputError || e instanceof GeminiOutputError;
 
-export const detectar = (req: DetectRequest) =>
-  provider() === "google" ? detectFoodsGoogle(req) : detectFoods(req);
+export const detectar = (req: DetectRequest) => (provider() === "google" ? detectFoodsGoogle(req) : detectFoods(req));
 
 export const proponerRecetas = (req: RecipesRequest) =>
   provider() === "google" ? suggestRecipesGoogle(req) : suggestRecipes(req);

@@ -2,7 +2,7 @@
 
 /** Último recinto de seguridad: falla hasta el layout, así que va sin estilos de la app */
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  console.error("[frigo] error grave:", error);
+  console.error("[salvacenas] error grave:", error);
 
   return (
     <html lang="es">
@@ -21,7 +21,7 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
           padding: "2rem",
         }}
       >
-        <h1 style={{ fontSize: "1.25rem", fontWeight: 700 }}>Frigo se ha caído</h1>
+        <h1 style={{ fontSize: "1.25rem", fontWeight: 700 }}>Salvacenas se ha caído</h1>
         <p style={{ color: "#9ba49c", maxWidth: "20rem" }}>
           Tus datos siguen guardados en el móvil. Vuelve a abrir la app.
         </p>

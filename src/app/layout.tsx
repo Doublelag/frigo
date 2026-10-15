@@ -19,8 +19,7 @@ const pixel = Silkscreen({
 
 export const metadata: Metadata = {
   title: `${APP_NAME} · ${APP_TAGLINE}`,
-  description:
-    "Haz una foto a tu nevera, Frigo apunta lo que tienes y cuándo caduca, y te propone recetas para aprovecharlo.",
+  description: `Haz una foto a tu nevera, ${APP_NAME} apunta lo que tienes y cuándo caduca, y te propone recetas para aprovecharlo.`,
   applicationName: APP_NAME,
   appleWebApp: { capable: true, title: APP_NAME, statusBarStyle: "default" },
   formatDetection: { telephone: false },

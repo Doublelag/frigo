@@ -7,7 +7,7 @@ import { PixelScreen } from "@/components/PixelArt";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
-    console.error("[frigo] error en la pantalla:", error);
+    console.error("[salvacenas] error en la pantalla:", error);
   }, [error]);
 
   return (
