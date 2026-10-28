@@ -58,7 +58,8 @@ async function ask<S extends z.ZodType>(opts: {
     fallbacks: "default",
     thinking: { type: "adaptive" },
     output_config: { effort: opts.effort, format: { type: "json_schema", schema: outputSchema(opts.schema) } },
-    system: opts.system,
+    // El prompt de sistema es igual en todas las peticiones del mismo tipo: se cachea y se cobra a ~5 %
+    system: [{ type: "text", text: opts.system, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: opts.content }],
   });
 
@@ -70,7 +71,9 @@ async function ask<S extends z.ZodType>(opts: {
   }
 
   const u = response.usage;
-  console.info(`[claude] ${response.model} in=${u.input_tokens} out=${u.output_tokens}`);
+  console.info(
+    `[claude] ${response.model} in=${u.input_tokens} cache_w=${u.cache_creation_input_tokens ?? 0} cache_r=${u.cache_read_input_tokens ?? 0} out=${u.output_tokens}`,
+  );
 
   const text = response.content.find((b): b is Anthropic.Beta.BetaTextBlock => b.type === "text")?.text;
   let data: unknown;
